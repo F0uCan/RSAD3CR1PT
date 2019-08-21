@@ -12,6 +12,6 @@ phi = (Q-1)*(P-1)
 
 d = gmpy.invert(E,phi)
 
-flag = pow(c,E,N)
+flag = pow(c,d,N)
 
 print (long_to_bytes(flag))
