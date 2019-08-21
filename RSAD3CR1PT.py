@@ -1,37 +1,17 @@
-# -*- coding: utf-8 -*-
 import gmpy
-import binascii
-from fractions import gcd
-#---------------------------------------------------
-#colhendo dados
+from Crypto.Util.number import *
 
-p = int(input("Digite o valor de P:"))
-q = int(input("Digite o valor de Q:"))
-N = p*q
-M = int(input("Digite a mensagem (em decimal):"))
-e = int(input("Digite um número primo:"))
+N = 3247042599234496397528999357195779
+E = 65537
+c =2770060553560336730843625224405190
+P = 56755289255345539
+Q = 57211277430476161
 
-phi = (p-1)*(q-1)
-
-#---------------------------------------------------
-#achando o valor de D
-assert gcd(e, phi) == 1
-
-d = gmpy.invert(e, phi)
-
-assert d != 0
-
-#---------------------------------------------------
-#descobrindo a frase encriptada e decriptada
-
-C = pow(M, e, N)
-K = pow(C, d, N)
-
-print ('Mensagem:', M)
-print ('Chave privada e chave publica:', e, d)
-print ('Mensagem Encriptada e Mensagem Decriptada:', C, K)
-
-assert K == M
+phi = (Q-1)*(P-1)
 
 
+d = gmpy.invert(E,phi)
 
+flag = pow(c,E,N)
+
+print (long_to_bytes(flag))
